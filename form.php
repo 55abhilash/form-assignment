@@ -10,7 +10,7 @@
 
 <?php
 $name_Err = $age_Err = $fav_team_Err = "";
-$name = $fav_team = "";
+$name = $fav_team = $fav_cric_team = "";
 $age = 0;
 $err = 0;
 
@@ -77,7 +77,7 @@ if ($_SERVER["REQUEST_METHOD"] == "POST") {
 	}
 	if($err == 0) {
 		mysqli_query($conn, "insert into form_info values ('$name', '$age', '$fav_team');");
-		header('Location: display.php?name=' . $name . '&age=' . $age . '&fav_team=' . $fav_team);
+		header('Location: display.php');
 	}	
 } ?>
 
@@ -92,6 +92,8 @@ if ($_SERVER["REQUEST_METHOD"] == "POST") {
 	<br><br>
 	Favorite football team : <input type="text" name="fav_team" value="<?php echo $fav_team;?>">
 	<span class="error">* <?php echo $fav_team_Err;?> </span>
+	<br><br>
+	Favorite cricket team : <input type="text" name="fav_cric_team" value="<?php echo $fav_cric_team;?>">
 	<br><br>
 	<input type="submit" name="submit" value="Submit">
 </form>

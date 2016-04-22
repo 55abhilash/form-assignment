@@ -77,7 +77,7 @@ if ($_SERVER["REQUEST_METHOD"] == "POST") {
 	}
 	if($err == 0) {
 		mysqli_query($conn, "insert into form_info values ('$name', '$age', '$fav_team');");
-		header('Location: display.php?name=' . $name . '&age=' . $age . '&fav_team=' . $fav_team);
+		header('Location: display.php');
 	}	
 } ?>
 

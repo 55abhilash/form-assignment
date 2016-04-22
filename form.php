@@ -1,6 +1,6 @@
 <!-- form.php 
 **** Create a form with 
-**** 3 fields - name, age and gender 
+**** 3 fields - name, age and favorite football teamn 
 **** writes to database
 **** then redirects to display.php 
 --!>
@@ -10,6 +10,8 @@
 
 <?php
 $name_Err = $age_Err = $fav_team_Err = "";
+$name = $fav_team = "";
+$age = 0;
 $err = 0;
 
 if ($_SERVER["REQUEST_METHOD"] == "POST") {
@@ -36,11 +38,7 @@ if ($_SERVER["REQUEST_METHOD"] == "POST") {
 	}
 	else {
 		$age = $_POST["age"];
-		if(!preg_match("/^[0-9]*$/", strval($age)) {
-			$age_Err = "An age is some NUMBER !!!!!! no chars...";
-			$err = 1;
-		}
-		else if($age > 18) {
+		if($age > 18) {
 			$age_Err = "The form filler must be max 18 years old!";
 			$err = 1;
 		}		
@@ -76,9 +74,9 @@ if ($_SERVER["REQUEST_METHOD"] == "POST") {
 		if(mysqli_query($conn, $tab) == TRUE) {
 			echo "Tables created succ.";
 		}
-		if($error == 0) {
+		if($err == 0) {
 			mysqli_query($conn, "insert into form_info values ('$name', '$age', '$fav_team');");
-			header('Location: display.php?name=' . $name . '?age=' . $age . '?fav_team=' . $fav_team);
+			header('Location: display.php?name=' . $name . '&age=' . $age . '&fav_team=' . $fav_team);
 		}	
 	}
 } ?>
@@ -87,10 +85,10 @@ if ($_SERVER["REQUEST_METHOD"] == "POST") {
 <span class="error">* required field. </span></p>
 <form method="post" action="<?php $_SERVER['PHP_SELF'] ?>">
 	First Name (no spaces) : <input type="text" name="name" value="<?php echo $name;?>">
-	<span class="error">* <?php echo $nameErr;?> </span>
+	<span class="error">* <?php echo $name_Err;?> </span>
 	<br><br>
 	Age : <input type="number" name="age" value="<?php echo $age;?>">
-	<span class="error">* <?php echo $ageErr;?> </span>
+	<span class="error">* <?php echo $age_Err;?> </span>
 	<br><br>
 	Favorite football team : <input type="text" name="fav_team" value="<?php echo $fav_team;?>">
 	<span class="error">* <?php echo $fav_team_Err;?> </span>

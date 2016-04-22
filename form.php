@@ -96,4 +96,6 @@ if ($_SERVER["REQUEST_METHOD"] == "POST") {
 	<span class="error">* <?php echo $fav_team_Err;?> </span>
 	<br><br>
 	<input type="submit" name="submit" value="Submit">
-</form>	
+</form>
+</body>
+</html>	

@@ -74,11 +74,11 @@ if ($_SERVER["REQUEST_METHOD"] == "POST") {
 		if(mysqli_query($conn, $tab) == TRUE) {
 			echo "Tables created succ.";
 		}
-		if($err == 0) {
-			mysqli_query($conn, "insert into form_info values ('$name', '$age', '$fav_team');");
-			header('Location: display.php?name=' . $name . '&age=' . $age . '&fav_team=' . $fav_team);
-		}	
 	}
+	if($err == 0) {
+		mysqli_query($conn, "insert into form_info values ('$name', '$age', '$fav_team');");
+		header('Location: display.php?name=' . $name . '&age=' . $age . '&fav_team=' . $fav_team);
+	}	
 } ?>
 
 <h1> 111303030 FORM for FOSS endsem lab </h1>
